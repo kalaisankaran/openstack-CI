@@ -27,6 +27,7 @@ parameters:
     description: Network ID to use for the instance.
     default: public
 
+
 resources:
   apache_instance:
     type: OS::Nova::Server
