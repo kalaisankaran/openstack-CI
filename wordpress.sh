@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Sample wordpress script
 echo 127.0.0.1 `hostname` >> /etc/hosts
 apt-get -y update
 #Install Apache
