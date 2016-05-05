@@ -1,8 +1,6 @@
 heat_template_version: 2013-05-23
 
-
 #heat_template_version: 2015-10-15
-
 
 description: >
   Heat apache template,launching a new ubuntu instance with apache web server application 
