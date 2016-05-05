@@ -1,0 +1,53 @@
+heat_template_version: 2013-05-23
+
+
+#heat_template_version: 2015-10-15
+
+
+description: >
+  Heat apache template,launching a new ubuntu instance with apache web server application 
+
+parameters:
+
+  key_name:
+    type: string
+    description: Name of a KeyPair to enable SSH access to the instance
+  instance_type:
+    type: string
+    description: Instance type for apache server
+    default: m1.small
+  image_id:
+    type: string
+    description: >
+      This is sample template for bluemeric
+    default: 8eb30a93-5723-4a24-9fd4-01a561cef965
+
+  net_id:
+    type: string
+    description: Network ID to use for the instance.
+    default: public
+  script:
+    type: string
+    description: script name to use for the instance.
+
+resources:
+  apache_instance:
+    type: OS::Nova::Server
+    properties:
+      image: { get_param: image_id }
+      flavor: { get_param: instance_type }
+      networks:
+      - network: { get_param: net_id }
+      key_name: { get_param: key_name }
+      user_data: { get_file: apache.sh }
+
+            
+outputs:
+  WebsiteURL:
+    description: URL for apache 
+    value:
+      str_replace:
+        template: http://host
+        params:
+          host: { get_attr: [apache_instance, first_address] }
+
