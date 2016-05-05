@@ -26,9 +26,6 @@ parameters:
     type: string
     description: Network ID to use for the instance.
     default: public
-  script:
-    type: string
-    description: script name to use for the instance.
 
 resources:
   apache_instance:
